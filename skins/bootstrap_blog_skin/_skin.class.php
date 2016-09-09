@@ -107,6 +107,13 @@ class bootstrap_blog_Skin extends Skin
 						'type' => 'integer',
 						'allow_empty' => true,
 					),
+					'font_family' => array(
+						'label' => T_('Font Family'),
+						'note' => '',
+						'defaultvalue' => 'system_helveticaneue',
+						'options' => $this->get_font_definitions(),
+						'type' => 'select',
+					),
 					'font_size' => array(
 						'label' => T_('Font size'),
 						'note' => '',
@@ -226,7 +233,7 @@ class bootstrap_blog_Skin extends Skin
 
 		return $r;
 	}
-
+	
 
 	/**
 	 * Get ready for displaying the skin.
@@ -235,7 +242,7 @@ class bootstrap_blog_Skin extends Skin
 	 */
 	function display_init()
 	{
-		global $Messages, $debug;
+		global $Messages, $debug, $disp;
 
 		// Request some common features that the parent function (Skin::display_init()) knows how to provide:
 		parent::display_init( array(
@@ -261,8 +268,7 @@ class bootstrap_blog_Skin extends Skin
 
 		// Add custom CSS:
 		$custom_css = '';
-
-
+		
 		// Font size customization
 		if( $font_size = $this->get_setting( 'font_size' ) )
 		{
@@ -321,6 +327,9 @@ class bootstrap_blog_Skin extends Skin
 				break;
 			}
 		}
+
+		// Font family customization
+		$custom_css .= $this->apply_selected_font( '#skin_wrapper', 'font_family' );
 
 		if( ! empty( $custom_css ) )
 		{ // Function for custom_css:
