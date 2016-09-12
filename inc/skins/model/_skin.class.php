@@ -1822,13 +1822,16 @@ class Skin extends DataObject
      *
      * Uses: $this->font_definitions
      */
-    function apply_selected_font( $target_element, $font_family_param )
+    function apply_selected_font( $target_element, $font_family_param, $text_size_param = NULL )
     {
         // Select the font's CSS string
         $selected_font_css = $this->font_definitions[ $this->get_setting( $font_family_param ) ][1];
 		
-        // Prepare the complete CSS for font usage
-        $custom_css = "$target_element { font-family: $selected_font_css }\n";
+		// If $text_size_param is passed, add font-size property
+		$text_size_param != NULL ? $text_size_param_css = 'font-size: ' . $text_size_param  : $text_size_param_css = '';
+		
+        // Prepare the complete CSS for font customization
+        $custom_css = "$target_element { font-family: $selected_font_css; " . $text_size_param_css . "}\n";
 
         return $custom_css;
     }
