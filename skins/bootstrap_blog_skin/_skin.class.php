@@ -329,7 +329,7 @@ class bootstrap_blog_Skin extends Skin
 		}
 
 		// Font family customization
-		$custom_css .= $this->apply_selected_font( '#skin_wrapper', 'font_family', '11px' );
+		$custom_css .= $this->apply_selected_font( '#skin_wrapper', 'font_family' );
 
 		if( ! empty( $custom_css ) )
 		{ // Function for custom_css:

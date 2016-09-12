@@ -1831,7 +1831,7 @@ class Skin extends DataObject
 		$text_size_param != NULL ? $text_size_param_css = 'font-size: ' . $text_size_param  : $text_size_param_css = '';
 		
         // Prepare the complete CSS for font customization
-        $custom_css = "$target_element { font-family: $selected_font_css; " . $text_size_param_css . "}\n";
+        $custom_css = "$target_element { font-family: $selected_font_css; $text_size_param_css }\n";
 
         return $custom_css;
     }
